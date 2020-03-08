@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+GOLD=$HOME/opt/gold/bin
+mkdir -p "$GOLD"
+
+GOLDPATH=${GOLDPATH:-$AWKPATH}
+GOLDPATH="$GOLDPATH:."
+
+# kill repeats
+export GOLDPATH=$(echo $GOLDPATH | gawk -F: '
+{ split("",out,"")
+  for (i = 1; i <= NF; i++) {
+     sub(/^[ \t]*/,"",$i)
+     sub(/[ \t]*$/,"",$i) 
+     if ($i && (++arr[$i]==1)) 
+       out[length(out)+1]=$i; 
+  }
+}
+END { printf(out[1]);
+      for (i=2;i<=length(out);i++) 
+         printf(":%s" , out[i]); 
+       printf "\n"; } ')
+
+
+# look for name clashes
+( IFS=:
+  for p in $GOLDPATH; do
+      for f in  $p/*.gold; do
+         if [ -f "$f" ]; then
+          echo $f $(basename $f); fi 
+      done
+  done | gawk '
+  {if ($2 in cnt) 
+      print "#W> name clash [" $1 "] with [" cnt[$2] "]">"/dev/stderr" 
+   else
+      cnt[$2]=$1}'
+)
+# transpiler
+gold2awk() {  gawk '
+function prep(s) {
+  return gensub(/\.([^0-9])([a-zA-Z0-9_]*)/, "[\"\\1\\2\"]","g",$0) 
+}
+/^}/                     { CODE=0; print;          next }
+/^(func|BEGIN|END).*}$/  { CODE=0; print prep($0); next }
+/^(func|BEGIN|END)/      { CODE=1 }
+                         { print CODE ? prep($0) : "# " $0 }
+' 
+} 
+( IFS=:
+  for p in $GOLDPATH; do
+      for f in  $p/*.gold; do
+         if [ -f "$f" ]; then
+           g=$GOLD/$(basename $f .gold).awk
+           if [ $f -nt $g ]; then
+              cat $f | gold2awk > $g
+           fi fi
+      done
+  done 
+)
