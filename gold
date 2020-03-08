@@ -1,59 +1,93 @@
 #!/usr/bin/env bash
 
+# test cases
+# travis
+# markdown
+# dot notation
+# nested objects
+
 GOLD=$HOME/opt/gold/bin
-mkdir -p "$GOLD"
+GOLDdoc=$GOLD/docs
+GOLDbin=$GOLD/bin
+mkdir -p "$GOLDdoc"
+mkdir -p "$GOLDbin"
 
-GOLDPATH=${GOLDPATH:-$AWKPATH}
-GOLDPATH="$GOLDPATH:."
-
-# kill repeats
-export GOLDPATH=$(echo $GOLDPATH | gawk -F: '
-{ split("",out,"")
-  for (i = 1; i <= NF; i++) {
-     sub(/^[ \t]*/,"",$i)
-     sub(/[ \t]*$/,"",$i) 
-     if ($i && (++arr[$i]==1)) 
-       out[length(out)+1]=$i; 
-  }
+banner() { cat<<'EOF'
+#!/usr/bin/env gawk -f
+# GOLD = Gawk Object Layer
+#
+# -----------------------------------------------
+#                  .-'''-.
+#                '   _    \  .---._______
+#              /   /` '.   \ |   |\  ___ `'.
+#       .--./).   |     \  ' |   | ' |--.\  \
+#      /.''\\ |   '      |  '|   | | |    \  '
+#     | |  | |\    \     / / |   | | |     |  '
+#      \`-' /  `.   ` ..' /  |   | | |     |  |
+#      /("'`      '-...-'`   |   | | |     ' .'
+#      \ '---.               |   | | |___.' /'
+#       /'""'.\              |   |/_______.'/
+#      ||     ||             '---'\_______|/
+#      \'. __//
+#       `'---'
+# -----------------------------------------------
+# 
+EOF
 }
-END { printf(out[1]);
-      for (i=2;i<=length(out);i++) 
-         printf(":%s" , out[i]); 
-       printf "\n"; } ')
-
-
-# look for name clashes
-( IFS=:
-  for p in $GOLDPATH; do
-      for f in  $p/*.gold; do
-         if [ -f "$f" ]; then
-          echo $f $(basename $f); fi 
-      done
-  done | gawk '
-  {if ($2 in cnt) 
-      print "#W> name clash [" $1 "] with [" cnt[$2] "]">"/dev/stderr" 
-   else
-      cnt[$2]=$1}'
-)
-# transpiler
-gold2awk() {  gawk '
-function prep(s) {
-  return gensub(/\.([^0-9])([a-zA-Z0-9_]*)/, "[\"\\1\\2\"]","g",$0) 
+gold2md() { gawk '
+  NR==1                    { print "\n# "'$1'"\n";               next }
+  /^}/                     { print; print "```\n";               next }
+  /^(func|BEGIN|END).*}$/) { print "```awk"; print; print "```"; next }
+  /^(func|BEGIN|END)/)     { print "```awk"; print;              next }
+                           { print $0 } '
 }
-/^}/                     { CODE=0; print;          next }
-/^(func|BEGIN|END).*}$/  { CODE=0; print prep($0); next }
-/^(func|BEGIN|END)/      { CODE=1 }
-                         { print CODE ? prep($0) : "# " $0 }
-' 
+
+gold2awk() { banner; gawk '
+function dots(s,   x) {
+  return gensub(/\.([^0-9])([a-zA-Z0-9_]*)/, 
+               "[\"\\1\\2\"]","g",s) 
 } 
-( IFS=:
-  for p in $GOLDPATH; do
-      for f in  $p/*.gold; do
-         if [ -f "$f" ]; then
-           g=$GOLD/$(basename $f .gold).awk
-           if [ $f -nt $g ]; then
-              cat $f | gold2awk > $g
-           fi fi
-      done
-  done 
-)
+function subs(s,   x) { 
+  for(x in SUBS) gsub(x, SUBS[x],s) 
+  return s
+}
+function line(s) {
+  if (s ~ /^}/) { 
+    show=0
+    return s      
+  } else {  
+    if (s ~ /^[\t ]*$/)   return s                                 
+    s = subs(s)
+    if (s ~ /^(func|BEGIN|END).*}$/) return dots(s) 
+    if (s ~ /^(func|BEGIN|END)/)     show=1  
+    return  ( show ?  dots(s) : "# " s ) }
+}
+function main(f,    path, used,        s,a) {
+  if (used[f]++ == 0) { 
+    print "#:::::" path " : " f " :::::::::::::::::::::::::::::"
+    while((getline s < f) > 0) 
+      if (s ~ /^@include/) 
+        main( gensub(/.*"(.*)".*$/, "\\1","g",s), path ": " f, used)
+      else if (s ~ /^#DEF/ )  {
+        split(s,a," ")
+     SUBS["\\<" a[2] "\\>"] = a[3] 
+      } else if (f ~ /.*awk$/)
+        print subs(s)
+      else 
+        if ((s !~ /^#!/)  && (s !~ /^# vim/))
+          print line(s) }
+}
+BEGIN { main(ARGV[1]) }
+'
+}
+
+f=$1
+cat $f | gold2md  > ${GOLDdoc}/$f
+cat $f | gold2awk > ${GOLDbin}/$f
+chmod +x ${GOLDbin}/$f
+
+shift
+if   [ -z "$0" ]
+then cat - | gawk -f ${GOLDbin}/$f 
+else         gawk -f ${GOLDbin}/$f $*
+fi
