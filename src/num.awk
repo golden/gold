@@ -2,15 +2,16 @@
 
 # Num 
 
-@include "gold.awk" 
+@include "lib.awk" 
 
 function Num(i,pos,txt,w) {
-  isa(i,"Num")
-  i.w   = i.w ? i.w : 1
-  i.hi  = -1e32
-  i.lo  =  1e32
+  is(i,"Num")
+  i.hi = -1e32
+  i.lo =  1e32
   i.mu = i.m2 = i.sd = 0
-  return "Num"
+  i.pos = pos ? pos : 0
+  i.txt = txt ? txt : ""
+  i.w   = i.w ? i.w : 1
 }
 function NumNorm(i,x) {
   return (x - i.lo)/(i.hi - i.lo + 1e-32)
