@@ -1,3 +1,9 @@
+## APE ###
+.var/
+*.awk
+
+## VIM ###
+
 # Swap
 [._]*.s[a-v][a-z]
 !*.svg  # comment out if you don't need vector files
@@ -16,7 +22,9 @@ Sessionx.vim
 # Auto-generated tag files
 tags
 # Persistent undo
-[._]*.un~o
+[._]*.un~
+
+### Macos ###
 
 # General
 .DS_Store
@@ -44,3 +52,4 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
