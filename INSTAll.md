@@ -8,7 +8,7 @@
 3. Set up and test:
 
 ```
-sh en -i
+sh en
 ./d
 ```
 
