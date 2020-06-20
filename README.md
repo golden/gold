@@ -53,7 +53,7 @@ and a set of libraries (found in `./src/gold/*`).  To get these files, use the [
 <tr><td><tt>o</tt>  </td><td> Overlay</td><td><ul> Lists the header file in root README.md<li> Useful while editing <tt>*.md</tt> file to  add a standard header.</ul></td></tr>
 <tr><td> <tt>l</tt> </td><td> Lists</td><td>List the markdown headers in this file. Useful while editing <tt>*.md</tt> file to  add a table of contents. </td></tr>
 <tr><td> <tt>d</tt> </td><td> Demos </td><td> Run all the <tt>src/i*ok.md</tt> files</td></tr>
-<tr><td> <tt>en</tt>  </td><td>Environment</td><td>  Set up for using Gold. <ul><li> Ensure there  exists the <tt>g,o,l,d,en</tt> files (and they are executable).<li> Ensure that the <tt>./src/gold/\*` files exist (which stores the core GOLD files).</ul>If they don't exist, they are initialized. <p> 
+<tr><td> <tt>en</tt>  </td><td>Environment</td><td>  Set up for using Gold. <ul><li> Ensure there  exists the <tt>g,o,l,d,en</tt> files (and they are executable).<li> Ensure that the <tt>./src/gold/\*</tt> files exist (which stores the core GOLD files).</ul>If they don't exist, they are initialized. <p> 
 
 Note that, in the above, "ensure exists" means that missing files
 will be downloaded but existing files will not be overwritten. This means that
