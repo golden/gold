@@ -5,16 +5,15 @@
 [issues](http://github.com/golden/gold/isses) 
 </p>
 
-# About
-Q: Why use GOLD?   
-A: GAWK is a very portable and succinct scripting language. 
+Q1: Why use GOLD?   
+A1: GAWK is a very portable and succinct scripting language. 
 But is 
 has some shortcomings: e.g. weak encapsulation and packaging support, no IDE or unit testing framework,
     and not document generation tools. 
 But that is all easily fixed with a few small scripts (written in, you guessed it, GAWK):
 
-Q: What does GOLD do?    
-A: GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance.   This code has been used to implement
+Q2: What does GOLD do?    
+A2: GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance.   This code has been used to implement
 
 
 - GOLDMINE are some data mining tools written in GOLD.
@@ -23,33 +22,30 @@ A: GOLD is an object layer that extends GAWK with objects, aggregation, polymorp
   Note that you do not need to use GOLDEN to write/ run GOLD code. But it helps.
 
 
-Q: What does a session with GOLDEN look like? 
-A: Here:
+Q3: What does a session with GOLDEN look like?   
+A3: Here:
 
 <p align=center><a href="https://github.com/golden/dev/blob/master/etc/img/screen.png"><img src="https://github.com/golden/dev/blob/master/etc/img/screen.png" width=900></a></p>
 
 
-Q: How to write GOLD source code files?    
-A:  Use a `*.md` extension
+Q4: How to write GOLD source code files?    
+A4:  Use a `*.md` extension
 and store your code in  awk "fence blocks"; e.g.
 
         ```awk
         code
         ```
 
-Q: How to to write unit tests for a file `x.md`?   
-A:  Create a file, that includes it, called `xok.md`.
+Q5: How to to write unit tests for a file `x.md`?    
+A5:  Create a file, that includes it, called `xok.md`.
 
-Q: How to run GOLD?   
-A: You will need five files 
+Q6: How to run GOLD?   
+A6: You will need five files 
   `g,o,l,d,en` 
 and a set of libraries (found in `./src/gold/*`).  To get these files, use the [INSTALL](INSTALL.md) instructions.
 
 
-## GOLDEN = g, o, l, d, en
-
 <table>
-<tr><td>COMMAND </td><td>WHAT</td><td> NOTES</td></tr>
 <tr><td><tt>g</tt>  </td><td> The GOLD transpiler.</td><td><ul> 
 <li>Converts all src/*.md to *.awk files.
 <li> Recursive expand the <tt>@include</tt> commands with the contents of those files.
