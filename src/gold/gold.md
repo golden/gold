@@ -23,36 +23,9 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# Objects
+# Run all tests
 
 ```awk
-BEGIN{  GOLD["oid"]  = 0
-        GOLD["ok"]["yes"] = GOLD["ok"]["no"] = 0
-        GOLD["dot"] = sprintf("%c",46)
-        GOLD["up"]   = GOLD["dot"] GOLD["dot"]
-}
-function List(i)    { split("",i,"") }
-function Object(i)  { List(i); i["ois"] = "Object"; i["oid"] = ++GOLD["oid"] }
-
-function zap(i,k)  { k = k?k:length(i)+1; i[k][0]; List(i[k]); return k } 
-
-function has( i,k,f,      s) { f=f?f:"List"; 
-                               s = zap(i,k); @f(i[k]);       return s}
-function hass(i,k,f,m,    s) { s = zap(i,k); @f(i[k],m);     return s}
-function has2(i,k,f,m,n,  s) { s = zap(i,k); @f(i[k],m,n);   return s}
-function has3(i,k,f,m,n,o,s) { s = zap(i,k); @f(i[k],m,n,o); return s}
-
-function inherit(k,f,   g) {
-  while(k) {
-    g = k f
-    if (g in FUNCTAB) return g
-    k = GOLD["ois"][k]
-  }
-  print "#E> failed method lookup: ["f"]"
-  exit 2
-}
-function is(i,x) {
-  if ("ois" in i) { GOLD["ois"][x] = i["ois"] }
-  i["ois"] = x
-}
+@include "obj"
+@include "lib"
 ```

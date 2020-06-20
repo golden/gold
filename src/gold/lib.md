@@ -41,6 +41,14 @@
     - [csv()](#csv) 
     - [Row()](#row) 
 
+        GOLD.dot    = sprintf("%c",46)
+        GOLD.up     = GOLD.dot GOLD.dot
+}
+
+```awk
+@include "gold/const"
+@include "gold/maths"
+
 ## Maths
 
 ```awk
