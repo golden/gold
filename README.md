@@ -13,7 +13,7 @@ has some shortcomings: e.g. weak encapsulation and packaging support, no IDE or 
 But that is all easily fixed with a few small scripts (written in, you guessed it, GAWK):
 
 Q2: What does GOLD do?    
-A2: GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance.   This code has been used to implement
+A2: GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism, inheritance and abstraction (with iterators)   This code has been used to implement:
 
 
 - GOLDMINE are some data mining tools written in GOLD.
