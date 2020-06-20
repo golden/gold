@@ -60,7 +60,7 @@ and a set of libraries (found in `./src/gold/*`).  To get these files, use the [
 </tr>
 <tr><td><tt>o</tt>  </td><td> Overlay</td><td><ul> Lists the header file in root README.md. Useful for add a <tt>*.md</tt> file to  add a standard header
 <p> Note that the optional flag `o -r`
-`o` recursively on all `./src/*.md` files (to give everyone the same look and feel).</td>>/tr>
+`o` recursively on all `./src/*.md` files (to give everyone the same look and feel).
 </td></tr>
 <tr><td> <tt>l</tt> </td><td> Lists</td><td>List the markdown headers in this file. Useful while editing <tt>*.md</tt> file to  add a table of contents. </td></tr>
 <tr><td> <tt>d</tt> </td><td> Demos </td><td> Run all the <tt>src/i*ok.md</tt> files</td></tr>
