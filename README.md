@@ -41,13 +41,13 @@ and a set of libraries (found in `./src/gold/*`).  To get these files, use the [
 ## GOLDEN = g, o, l, d, en
 
 <table>
-<tr><td>COMMAND </td><td> NOTES</tr>
-<tr><td>`g`  </td><td> The GOLD transpiler. <<ul> <li>Converts all src/*.md to *.awk files.<li> Recursive expand the `@include` commands with the contents of those files.<li> Add executable line `#!/usr/bin/env gawk -f` to top of file.<li> Tell the file was the top level files (using `BEGIN {TOP=FILENAME}`.<li>Change the  file's mode with `chmod +x`.<li> Runs the resulting
+<tr><td>COMMAND </td><td>WHAT</td><td> NOTES</tr>
+<tr><td>`g`  </td><td> The GOLD transpiler.</td><td><<ul> <li>Converts all src/*.md to *.awk files.<li> Recursive expand the `@include` commands with the contents of those files.<li> Add executable line `#!/usr/bin/env gawk -f` to top of file.<li> Tell the file was the top level files (using `BEGIN {TOP=FILENAME}`.<li>Change the  file's mode with `chmod +x`.<li> Runs the resulting
 .awk</ul></tr>
-<tr><td>`o`  </td><td> Overlay<br> Lists the header file in root README.md<br> Useful while editing `*.md` file to  add a standard header.</td></tr>
-<tr><td> `l` </td><td> Lists the markdown headers in this file.<br> Useful while editing `*.md` file to  add a table of contents. </td></tr>
-<tr><td> `d` </td><td> Demos <br> run all the `src/i*ok.md` files</td></tr>
-<tr><td> `en`  </td><td>  Environment tricks.<br> `en -i` is the base install that ensure there  exists the `g,o,l,d,en` files (and they are executable) and that the `./src/gold/\*` files exist (which stores the core GOLD files).If they don't exist, they are copied down from the web.<p> 
+<tr><td>`o`  </td><td> Overlay</td><td><ul> Lists the header file in root README.md<li> Useful while editing `*.md` file to  add a standard header.</ul></td></tr>
+<tr><td> `l` </td><td> Lists</td><td><List the markdown headers in this file. Useful while editing `*.md` file to  add a table of contents. </td></tr>
+<tr><td> `d` </td><td> Demos </td><td> Run all the `src/i*ok.md` files</td></tr>
+<tr><td> `en`  </td><td>Environment</td><td>  Set up for using Gold. <ul><li> Ensure there  exists the `g,o,l,d,en` files (and they are executable).<li> Ensure that the `./src/gold/\*` files exist (which stores the core GOLD files).</ul>If they don't exist, they are initialized. <p> 
 
 Note that, in the above, "ensure exists" means that missing files
 will be downloaded but existing files will not be overwritten. This means that
