@@ -6,34 +6,42 @@
 </p>
 
 # About
-GAWK is  GNU Awk (and "awk" is short for its creators: Alfred Aho, Peter Weinberger, and Brian Kernighan).
-GAWK is a very portable and succinct scripting language. 
-
-GAWK has some shortcomings: e.g. weak encapsulation and packaging support, no IDE or unit testing framework,
+Q: Why use GOLD?   
+A: GAWK is a very portable and succinct scripting language. 
+But is 
+has some shortcomings: e.g. weak encapsulation and packaging support, no IDE or unit testing framework,
     and not document generation tools. 
 But that is all easily fixed with a few small scripts (written in, you guessed it, GAWK):
 
-- GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance. 
+Q: What does GOLD do?    
+A: GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance.   This code has been used to implement
+
+
 - GOLDMINE are some data mining tools written in GOLD.
 - GOLDSTAR are a set of data mining fairness assurance operators. 
 - GOLDEN is a cross-platform development environment for the above,  based on bash, vim and tmux. 
-  You do not need to use it to run GOLD code but, FYI,
-  a session in GOLDEN looks like this:
+  Note that you do not need to use GOLDEN to write/ run GOLD code. But it helps.
+
+
+Q: What does a session with GOLDEN look like? 
+A: Here:
 
 <p align=center><a href="https://github.com/golden/dev/blob/master/etc/img/screen.png"><img src="https://github.com/golden/dev/blob/master/etc/img/screen.png" width=900></a></p>
 
 
-
-- To write GOLD files, use a `*.md` extension
+Q: How to write GOLD source code files?    
+A:  Use a `*.md` extension
 and store your code in  awk "fence blocks"; e.g.
 
-    ```awk
-    code
-    ```
+        ```awk
+        code
+        ```
 
-- To write unit tests for a file `x.md`, create a file that includes it called
-`xok.md`.
-- To run GOLD, you need five files 
+Q: How to to write unit tests for a file `x.md`?   
+A:  Create a file, that includes it, called `xok.md`.
+
+Q: How to run GOLD?   
+A: You will need five files 
   `g,o,l,d,en` 
 and a set of libraries (found in `./src/gold/*`).  To get these files, use the [INSTALL](INSTALL.md) instructions.
 
