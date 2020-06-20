@@ -41,13 +41,19 @@ and a set of libraries (found in `./src/gold/*`).  To get these files, use the [
 ## GOLDEN = g, o, l, d, en
 
 <table>
-<tr><td>COMMAND </td><td>WHAT</td><td> NOTES</tr>
-<tr><td>`g`  </td><td> The GOLD transpiler.</td><td><<ul> <li>Converts all src/*.md to *.awk files.<li> Recursive expand the `@include` commands with the contents of those files.<li> Add executable line `#!/usr/bin/env gawk -f` to top of file.<li> Tell the file was the top level files (using `BEGIN {TOP=FILENAME}`.<li>Change the  file's mode with `chmod +x`.<li> Runs the resulting
-.awk</ul></tr>
-<tr><td>`o`  </td><td> Overlay</td><td><ul> Lists the header file in root README.md<li> Useful while editing `*.md` file to  add a standard header.</ul></td></tr>
-<tr><td> `l` </td><td> Lists</td><td><List the markdown headers in this file. Useful while editing `*.md` file to  add a table of contents. </td></tr>
-<tr><td> `d` </td><td> Demos </td><td> Run all the `src/i*ok.md` files</td></tr>
-<tr><td> `en`  </td><td>Environment</td><td>  Set up for using Gold. <ul><li> Ensure there  exists the `g,o,l,d,en` files (and they are executable).<li> Ensure that the `./src/gold/\*` files exist (which stores the core GOLD files).</ul>If they don't exist, they are initialized. <p> 
+<tr><td>COMMAND </td><td>WHAT</td><td> NOTES</td></tr>
+<tr><td><tt>g</tt>  </td><td> The GOLD transpiler.</td><td><ul> 
+<li>Converts all src/*.md to *.awk files.
+<li> Recursive expand the <tt>@include</tt> commands with the contents of those files.
+<li> Add executable line <tt>#!/usr/bin/env gawk -f</tt> to top of file.
+<li> Tell the file was the top level files (using <tt>BEGIN {TOP=FILENAME}</tt>.i
+<li>Change the  file's mode with <tt>chmod +x</tt>.
+<li> Runs the resulting .awk</ul>
+</tr>
+<tr><td><tt>o</tt>  </td><td> Overlay</td><td><ul> Lists the header file in root README.md<li> Useful while editing <tt>*.md</tt> file to  add a standard header.</ul></td></tr>
+<tr><td> <tt>l</tt> </td><td> Lists</td><td>List the markdown headers in this file. Useful while editing <tt>*.md</tt> file to  add a table of contents. </td></tr>
+<tr><td> <tt>d</tt> </td><td> Demos </td><td> Run all the <tt>src/i*ok.md</tt> files</td></tr>
+<tr><td> <tt>en</tt>  </td><td>Environment</td><td>  Set up for using Gold. <ul><li> Ensure there  exists the <tt>g,o,l,d,en</tt> files (and they are executable).<li> Ensure that the <tt>./src/gold/\*` files exist (which stores the core GOLD files).</ul>If they don't exist, they are initialized. <p> 
 
 Note that, in the above, "ensure exists" means that missing files
 will be downloaded but existing files will not be overwritten. This means that
