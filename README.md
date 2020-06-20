@@ -24,42 +24,22 @@ But that is all easily fixed with a few small scripts (written in, you guessed i
 
 
 
-## Install
-
-1. Install Gawk 
-   - For instructions on that, see [here](https://github.com/golden/dev/blob/master/.travis.yml).
-2. Download GOLD via
-   - `curl -o en https://raw.githubusercontent.com/golden/gold/master/en`
-   - or, if you are a Github user,  `git clone http://github.com/golden/gold`
-3. Set up and test:
-
-```
-sh en -i
-./d
-```
-
-The `./d` runs the unit
-tests in `src/gold` directory.
-In that run, there should only be on failing test (which is a test that the tests can
-  catch a failing test).
-
-## Write code
-
-To write GOLD files, use a `*.md` extension
+- To write GOLD files, use a `*.md` extension
 and store your code in  awk "fence blocks"; e.g.
-
 
     ```awk
     code
     ```
-To write unit tests for a file `x.md`, create a file that includes it called
-`xok.md`.
 
-## Run code
-To run GOLD, you need five files 
+- To write unit tests for a file `x.md`, create a file that includes it called
+`xok.md`.
+- To run GOLD, you need five files 
   `g,o,l,d,en` 
-and a set of libraries (found in `./src/gold/*`). Note that these are install
-by the above `en` command.
+and a set of libraries (found in `./src/gold/*`). 
+  - To get these files, use the [INSTALL](INSTALL.md) instructions.
+
+
+## GOLDEN = g, o, l, d, en
 
 |command| notes|
 |--|-------|
@@ -73,19 +53,4 @@ Note that, in the above, "ensure exists" means that missing files
 will be downloaded but existing files will not be overwritten. This means that
 if you do any local config, those changes are safe.
 
-## Advanced Install
-
-For those that use Git or travis CI or vim or tmux, there is a little more support
-(and note that the `-e`, `-t` flags won't work unless you first run `en -I`): 
-
-- `. en -I`: advanced install tricks
-   - ensure that `./.gitignore` file exists that  knows how ignore `*.awk` files
-   - ensure that `./.travis.yml` file exists
-   - ensure that `./.vimrc` file exists
-   - ensure that `./.tmux.conf' file exists
-   - adds some useful alias to the local envrionment (`gg` = git pull; `gp`= git commit, the pusn, then status.)
-- `en -e`: 
-   - edit a file using vim, tuned to GOLD files
-- `en -t`: run tmux
-   - run `tmux`
 
