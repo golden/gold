@@ -1,6 +1,18 @@
 
 # List
 
+- [Update](#update) : 
+    - [push](#push--push-a-value-to-end-of-list) : push a value to end of list
+- [Random items from list](#random-items-from-list) : 
+    - [anyi](#anyi--random-index) : random index
+    - [any](#any---any-item-from-a-vector) : any item from a vector
+    - [anys](#anys---any-item-from-a-set) : any item from a set
+    - [nanys](#nanys-any-numberic-item-fro-a-set) : any numberic item fro a set
+    - [copy()](#copy--deep-copy) : deep copy
+    - [o()](#o) : 
+    - [oo()](#oo) : 
+    - [keysort()](#keysort) : 
+
 ## Update
 
 ### push : push a value to end of list
