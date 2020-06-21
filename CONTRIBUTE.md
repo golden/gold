@@ -5,16 +5,23 @@
 <a href="http://github.com/golden/issues">issues</a> 
 </p>
 
+## Variables
+
+All local variables in functions
+should start with lower case.
+
+## Signatures
+
 Anything:
 
 |Symbol| Meaning                                 |
-|------|:-----------------------------------------|
+|------|:----------------------------------------|
 | y    | anything: atoms, lists, whatever        |
 
 Atoms:
 
 |Symbol| Meaning                                 |
-|------|:-----------------------------------------|
+|------|:----------------------------------------|
 | x    | any atom : a string or number  or x     |
 | s    | string                                  |
 | n    | number                                  |
@@ -24,7 +31,7 @@ Atoms:
 Lists:
 
 |Symbol| Meaning                                 |
-|------|:-----------------------------------------|
+|------|:----------------------------------------|
 | a    | any list: vectors, indexes, other       |
 | v    | vector: a list with all numeric indexes |
 | l    | a list of all indexes, no values        |
@@ -32,7 +39,7 @@ Lists:
 Meta:
 
 |Symbol| Meaning                                 |
-|------|:-----------------------------------------|
+|------|:----------------------------------------|
 | +    | a list, to be augmented with more keys  |   
 | -    | an empty list, to be filled in          |
 | =    | set a default value                     |

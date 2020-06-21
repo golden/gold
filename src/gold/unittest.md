@@ -44,10 +44,9 @@ function tests(what, all,   f,a,i,n) {
 }
 ```
 
-### ok(s1, b).  Checls test result "b" in file "s1",
+### ok(s1, b).  Checks test result "b" in file "s1",
 Report the `yes` or `no` message if a test passes or fails.
 Increments the global `test.yes` and `test.no` counters.
-
 ```awk
 function ok(f,yes,    msg) {
   msg = yes ? "PASSED!" : "FAILED!"
@@ -58,31 +57,25 @@ function ok(f,yes,    msg) {
   print "#test:\t" msg "\t" f
 }
 ```
-### near(n1,n2, ?n3=10^-32) : b. Returns true in "n1" is within "n3" of "n2" 
 
+### near(n1,n2, ?n3 = 10^-32) : b. Returns true in "n1" is within "n3" of "n2" 
 Return true if what you `got` is within `epsilon` of
 what you `want` (`epsilon` defaults to 0.001).
-
 ```awk
 function near(got,want,     epsilon) {
    epsilon = epsilon ? epsilon : 0.001
    return abs(want - got)/(want + 10^-32)  < epsilon
 }
 ```
-### within()
 
-Return true if what you `got` is within 
-`lo` to `hi`.
-
+### within(n1,n2,n3) : n.  Return true if "n2" is in between "n1" and "n3".
 ```awk
 function within(got,lo,hi) { 
    return  got >= lo && got <= hi
 }
 ```
-### rogues()
 
-Report variables that have escaped from functions.
-
+### rogues().  Report variables that have escaped from functions.
 ```awk
 function rogues(    s) {
   for(s in SYMTAB) 
