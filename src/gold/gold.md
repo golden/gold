@@ -5,9 +5,11 @@
 [issues](http://github.com/golden/gold/isses) 
 </p>
 
-# Run all tests
+# Gold (base system)
 
 ```awk
-@include "obj"
 @include "math"
+@include "const"
+@include "list"
+@include "obj"
 ```

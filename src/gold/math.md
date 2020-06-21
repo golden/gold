@@ -9,8 +9,7 @@
 
 ## Misc
 
-### abs :  absolute value 
-Usage: `abs(n) : n`
+### abs(n):n.  Returns absolute value 
 ```
 function abs(x)  { return x>=0 ? x : -1*x }`
 ```

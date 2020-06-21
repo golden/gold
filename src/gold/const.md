@@ -5,7 +5,11 @@
 [issues](http://github.com/golden/gold/isses) 
 </p>
 
+# Constants
+
+```awk
 BEGIN {
-   GOLD.dot    = sprintf("%c",46)
-   GOLD.up     = GOLD.dot GOLD.dot
+  GOLD.dot    = sprintf("%c",46)
+  GOLD.up     = GOLD.dot GOLD.dot
 }
+```
