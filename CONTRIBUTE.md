@@ -5,16 +5,37 @@
 <a href="http://github.com/golden/issues">issues</a> 
 </p>
 
-|Symbol| Type | Meaning                                 |
-|------|------|-----------------------------------------|
-| x    | atom | any atom : a string or number  or x     |
-| s    | atom | string                                  |
-| n    | atom | number                                  |
-| b    | atom | a 0,1 variables (which might an empty or non-nil string. |
-| a    | list | any list: vectors, indexes, other       |
-| v    | list | vector: a list with all numeric indexes |
-| i    | list | a list of all indexes, no values        |
-| +    | meta | a list, to be augmented with more keys  |   
-| -    | meta | an empty list, to be filled in          |
-| ?    | meta | optional argument                       |
-| : T  | meta | some type "T"                           | 
+Anything:
+
+|Symbol| Meaning                                 |
+|------|-----------------------------------------|
+| y    | anything: atoms, lists, whatever        |
+
+Atoms:
+
+|Symbol| Meaning                                 |
+|------|-----------------------------------------|
+| x    | any atom : a string or number  or x     |
+| s    | string                                  |
+| n    | number                                  |
+| b    | a 0,1 variables (which might an empty or non-nil string. |
+
+
+Lists:
+
+|Symbol| Meaning                                 |
+|------|-----------------------------------------|
+| a    | any list: vectors, indexes, other       |
+| v    | vector: a list with all numeric indexes |
+| i    | a list of all indexes, no values        |
+
+Meta:
+
+|Symbol| Meaning                                 |
+|------|-----------------------------------------|
+| +    | a list, to be augmented with more keys  |   
+| -    | an empty list, to be filled in          |
+| ?    | optional argument                       |
+| : T  | some type "T"                           | 
+
+
