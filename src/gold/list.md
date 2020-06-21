@@ -24,8 +24,7 @@
 
 ## Update
 
-### push(a,x) : push a value to end of list
-Usage: `push(+a,x) : n`  
+### push(+a,x):n.  Push a value to end of list
 Returns the pushed item.
 ```awk
 function push(a,x) { a[ length(a)+1 ] = x; return x; }
@@ -33,21 +32,18 @@ function push(a,x) { a[ length(a)+1 ] = x; return x; }
 
 ## Random items from list
 
-### anyi(a) : random index 
-Usage: `anyi(a) : n`   
-Get a random number 1 to size of `a`.
+### anyi(A):n.  random index 
+Get a random number 1 to size of `A`.
 ```awk
 function anyi(a)  { return 1+int(rand()*length(a))  }
 ```
 
-### any(v) :  any item from a vector
-Usage: `any(v) : x`
+### any(V):x. Any item from a vector
 ```awk
 function any(v)   { return v[ anyi(v) ] }
 ```
 
-### anys(s) :  any item from a set
-Usage: `anys(s) : x`   
+### anys(S):x. Any item from a set
 Note: takes time linear on length of set.
 ```awk
 function anys(s, n,k){
@@ -57,14 +53,12 @@ function anys(s, n,k){
 }
 ```
 
-### nanys(s): any numeric item fro a set
-Usage: `nanys(s) : n`   
+### nanys(S):n.  Any numeric item from a set
 ```awk
 function nanys(s) { return 0+anys(s) }
 ```
 
-### copy(a, b) : recursively copy array a to b
-Usage: `copy(a, -a)`   
+### copy(A1, -A2). Recursively copy array a to b
 ```awk
 function copy(a, b,     i){
   for (i in a) {
@@ -77,8 +71,7 @@ function copy(a, b,     i){
 }}
 ```      
 ## Print list
-### o(a) : return a string of key,item pairs 
-Usage: `o(a)`  
+### o(A):s.  Return a string of key,item pairs 
 Convert a flat array to a string. Not suitable for nested arrays.
 
 ```awk
@@ -89,8 +82,7 @@ function o(a,     sep,    sep1,i,s) {
   return s 
 }
 ```      
-### oo(a, s) : recursively print an array, prefixed by "s"
-Usage: `oo(a, s)`   
+### oo(A, s) : recursively print an array, prefixed by "s"
 Print a nested array, optionally with some `prefix`.
 Print keys in sorted order.
 
@@ -114,7 +106,7 @@ function ooSortOrder(a, i) {
 ```
 
 ## Sort a list
-### keysort(a,s) : sort an array "a", using the field "s". 
+### keysort(A,s) : sort an array "a", using the field "s". 
 Usage: `keysort(+a, s): n`    
 Returns the length of the list.
 ```awk
