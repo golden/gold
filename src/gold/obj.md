@@ -7,7 +7,18 @@
 
 # Objects
 
-## isa(f,a). Return true if "a" is an object of type "f", or any super-type of "f".
+- [Type Checking](#type-checking) 
+    - [isa(f,a)](#isafa-return-true-if-a-is-an-object-of-type-f-or-any-super-type-of-f). Return true if "a" is an object of type "f", or any super-type of "f".
+- [Creation](#creation) 
+    - [Object(?a) : create a newlist](#objecta--create-a-newlist) 
+- [Composition](#composition) 
+    - [has(a,?s,?f = "List") : n](#hasasf--list--n-add-an-object-of-type-f-at-the-key-as). Add an object of type "f" at the key "a[s]"
+- [Inheritance](#inheritance) 
+    - [is(+a,f)](#isaf-tag-the-object-a-with-the-class-signifier-f). Tag the object "a" with the class signifier "f".
+    - [inherit(s,f)](#inheritsf--look-up-the-type-hierarchy-from-s-looking-for-the-method-f). Look up the type hierarchy from "s" looking for the method "f".
+
+## Type Checking
+### isa(f,a). Return true if "a" is an object of type "f", or any super-type of "f".
 GOLD objects have certain properties:
 
 - They are a list with keys:
@@ -43,51 +54,64 @@ function isa2(a,b,     j) {
   return 1
 }
 ```
+## Creation
+### Object(?a) : create a newlist
 ```awk
+function Object(i)  { 
+  List(i); i.ois= "Object";  i.oid = ++GOLD.oid 
+}
+
 function List(i)    { split("",i,"") }
-function Object(i)  { List(i); i.ois= "Object";  i.oid = ++GOLD.oid }
 ```
 
 Note the "dot notation" (e.g. i.oid) in the `Object` function. These
 are converted into field names of GAWK arrays. Most specifically, the GOLD transpiler
 converts all  .md files to .awk files as follows:
 
-     /\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/ ==> "[\"\\1\\2\"]"
+        /\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/ ==> "[\"\\1\\2\"]"
 
-For example, after transpiling, the `Object` function becomes::
+For example, after transpiling, the above`Object` function becomes::
 
-    function Object(i)  { List(i); i["ois"]= "Object";  i["oid"]= ++GOLD["oid"] }
+        function Object(i)  { 
+          List(i); i["ois"]= "Object";  i["oid"]= ++GOLD["oid"] 
+        }
 
-Notes:
-- GOLD strives to minimize its intrusion to the global space. Hence, all its bookkeeping
-  is done as fields of the `GOLD` variables.
-- The GOLD transpiler generates stand-alone GAWK files. Apart from the above
-  transpiling, GOLD will:
-  - Recursively include the text of any `@include` files
-  - Add the "she-bang" line to line1 (`#/usr/bin/env gawk -f `cre
+GOLD strives to minimize its intrusion to the global space. Hence, all its bookkeeping
+is done as fields of the `GOLD` variables.
 
- internal represetnation fo the
-Note the "dot notation" (e.g. i.oid) in the `Object` functionn
-
-function has(i,k,f, s) { i
-   if (!f) f = "List"               # ensure we are creating something
-   if (!k) k = length(i)+1          # ensure we have a place to put it
-   i[k]["\001"]; delete i[k]["\001] # ensure we adding to a sulist
-   @f(i[k])                         # create
-   return k                         # return where we put it
+## Composition
+### has(a,?s,?f = "List") : n. Add an object of type "f" at the key "a[s]"
+If "s" is omitted, use length of "a"+1 (i.e. push to end of list).
+Return the key where we added the new thing.
+```awk
+function has(i,k,f,   s) { 
+  if (!f) f = "List"               # ensure we are creating something
+  if (!k) k = length(i)+1          # ensure we have a place to put it
+  i[k]["\001"]; delete i[k]["\001] # ensure we adding to a sulist
+  @f(i[k])                         # create
+  return k                         # return where we put it
 }
+```
 
-function inherit(k,f,   g) {
-  while(k) {
-    g = k f
+## Inheritance
+### is(+a,f). Tag the object "a" with the class signifier "f".
+As a side-effect, make a note about what sub-classes are known in this system.
+```awk
+function is(i,f) {
+  if ("ois" in i) { GOLD.ois[f] = i.ois }
+  i.ois = f
+}
+```
+
+### inherit(s,f).  Look up the type hierarchy from "s" looking for the method "f".
+```awk
+function inherit(s,f,   g) {
+  while(s) {
+    g = s f
     if (g in FUNCTAB) return g
-    k = GOLD.ois[k]
+    s = GOLD.ois[s] # look upward in the class hierarchy
   }
   print "#E> failed method lookup: ["f"]"
   exit 2
-}
-function is(i,x) {
-  if ("ois" in i) { GOLD.ois[x] = iois }
-  i.ois = x
 }
 ```

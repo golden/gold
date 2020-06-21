@@ -49,7 +49,7 @@ and a set of libraries (found in `./src/gold/*`).  To get these files, use the [
 <tr><td><tt>g</tt>  </td><td> The GOLD transpiler.</td><td><ul> 
 <li>Converts all src/*.md to *.awk files.
 <li> Recursive expand the <tt>@include</tt> commands with the contents of those files.
-<li> Implement key access with dots 
+<li> Implement key access with dots <br>
 e.g.  `i.oid=++GOLD.oid`` becomes `i["oid"]=++GOLD["oid"]`. 
 <li> Add executable line <tt>#!/usr/bin/env gawk -f</tt> to top of file.
 <li> Tell the file was the top level files (using <tt>BEGIN {TOP=FILENAME}</tt>.i
