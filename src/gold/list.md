@@ -25,7 +25,7 @@ function push(a,x) { a[ length(a)+1 ] = x; return x; }
 ## Random items from list
 
 ### anyi : random index 
-Usage: `anyi(a) : n`      	
+Usage: `anyi(a) : n`        	
 Get a random number 1 to size of `a`.
 ```awk
 function anyi(a)  { return 1+int(rand()*length(a))  }
