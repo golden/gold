@@ -11,6 +11,10 @@ function trim(s) {
   gsub(/[ \t]*$/,"",s)
   return s
 }
+function rest(a,  sep,s,i) {
+  for(i=2;i<=length(a); i++) {s= s sep a[i]; sep=""}
+  return s
+}
 /^#[#]+[ \t]/ { 
      new = split($1,a,"#") - 3
      s = $0
@@ -19,11 +23,11 @@ function trim(s) {
      link = s
      gsub(/[^a-zA-Z0-9\- ]/,"",link)
      gsub(/[ \t]/,"-",link)
-     split(s,a,/[ \t]*:[ \t]/)
-     a[1] = trim( a[1] )
-     a[2] = trim( a[2] )
+     split(s,a,/[ \t]*\.[ \t]/)
+     left =  trim( a[1] )
+     right = trim( rest(a) )
      if (length(a) == 1)
-          print ns(new) "- [" s    "](#" tolower(link) ") " 
-     else print ns(new) "- [" a[1] "](#" tolower(link) ") : " a[2] 
+          print ns(new) "- [" left "](#" tolower(link) ") " 
+     else print ns(new) "- [" left "](#" tolower(link) "). " right
 }
 END {print ""}'

@@ -8,19 +8,19 @@
 
 # List
 
-- [Update](#update) : 
-    - [push(a,x)](#pushax--push-a-value-to-end-of-list) : push a value to end of list
-- [Random items from list](#random-items-from-list) : 
-    - [anyi(a)](#anyia--random-index) : random index
-    - [any(v)](#anyv---any-item-from-a-vector) : any item from a vector
-    - [anys(s)](#anyss---any-item-from-a-set) : any item from a set
-    - [nanys(s)](#nanyss-any-numeric-item-fro-a-set) : any numeric item fro a set
-    - [copy(a, b)](#copya-b--recursively-copy-array-a-to-b) : recursively copy array a to b
-- [Print list](#print-list) : 
-    - [o(a)](#oa--return-a-string-of-keyitem-pairs) : return a string of key,item pairs
-    - [oo(a, s)](#ooa-s--recursively-print-an-array-prefixed-by-s) : recursively print an array, prefixed by "s"
-- [Sort a list](#sort-a-list) : 
-    - [keysort(a,s)](#keysortas--sort-an-array-a-using-the-field-s) : sort an array "a", using the field "s".
+- [Update](#update) 
+    - [push(+a,x):n](#pushaxn--push-a-value-to-end-of-list). Push a value to end of list
+- [Random items from list](#random-items-from-list) 
+    - [anyi(A):n](#anyian--random-index). random index
+    - [any(V):x](#anyvx-any-item-from-a-vector). Any item from a vector
+    - [anys(S):x](#anyssx-any-item-from-a-set). Any item from a set
+    - [nanys(S):n](#nanyssn--any-numeric-item-from-a-set). Any numeric item from a set
+    - [copy(A1, -A2)](#copya1--a2-recursively-copy-array-a-to-b). Recursively copy array a to b
+- [Print list](#print-list) 
+    - [o(A):s](#oas--return-a-string-of-keyitem-pairs). Return a string of key,item pairs
+    - [oo(A, s) : recursively print an array, prefixed by "s"](#ooa-s--recursively-print-an-array-prefixed-by-s) 
+- [Sort a list](#sort-a-list) 
+    - [keysort(A,s) : sort an array "a", using the field "s".](#keysortas--sort-an-array-a-using-the-field-s) 
 
 ## Update
 
