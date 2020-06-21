@@ -10,16 +10,16 @@
 - [Update](#update) 
     - [push(+a,x) : n](#pushax--n--push-a-value-to-end-of-list). Push a value to end of list
 - [Random items from list](#random-items-from-list) 
-    - [anyi(A) : n](#anyia--n--return-a-random-number-for-1-to-size-of-a). Return a random number for 1 to size of "A"
-    - [any(V) : x](#anyv--x-any-item-from-a-vector-v). Any item from a vector "V"
-    - [anys(S) : x](#anyss--x-any-item-from-a-set-s). Any item from a set "S"
-    - [nanys(S) : n](#nanyss--n--any-numeric-item-from-a-set-s). Any numeric item from a set "S".
-    - [copy(A1, -A2)](#copya1--a2-recursively-copy-array-a1-to-a2). Recursively copy array "A1" to "A2".
+    - [anyi(v) : n](#anyiv--n--return-a-random-number-for-1-to-size-of-v). Return a random number for 1 to size of "v"
+    - [any(v) : x](#anyv--x-any-item-from-a-vector-v). Any item from a vector "v"
+    - [anys(l) : x](#anysl--x-any-item-from-a-list-of-indexes-l). Any item from a list of indexes "l"
+    - [nanys(l) : n](#nanysl--n--any-numeric-item-from-a-list-of-indexes-l). Any numeric item from a list of indexes "l".
+    - [copy(a1, -a2)](#copya1--a2-recursively-copy-array-a1-to-a2). Recursively copy array "a1" to "a2".
 - [Print list](#print-list) 
-    - [o(A) : s](#oa--s--return-a-string-of-keyitem-pairs). Return a string of key,item pairs
-    - [oo(A, s)](#ooa-s-recursively-print-an-array-a-prefixed-by-s). Recursively print an array "A", prefixed by "s"
+    - [o(a) : s](#oa--s--return-a-string-of-keyitem-pairs). Return a string of key,item pairs
+    - [oo(a, s)](#ooa-s-recursively-print-an-array-a-prefixed-by-s). Recursively print an array "A", prefixed by "s"
 - [Sort a list](#sort-a-list) 
-    - [keysort(A,s)](#keysortas-sort-an-array-a-using-the-field-s). Sort an array "a", using the field "s".
+    - [keysort(a,s)](#keysortas-sort-an-array-a-using-the-field-s). Sort an array "a", using the field "s".
 
 ## Update
 
