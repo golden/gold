@@ -9,23 +9,23 @@
 # List
 
 - [Update](#update) 
-    - [push(+a,x):n](#pushaxn--push-a-value-to-end-of-list). Push a value to end of list
+    - [push(+a,x) : n](#pushax--n--push-a-value-to-end-of-list). Push a value to end of list
 - [Random items from list](#random-items-from-list) 
-    - [anyi(A):n](#anyian--random-index). random index
-    - [any(V):x](#anyvx-any-item-from-a-vector). Any item from a vector
-    - [anys(S):x](#anyssx-any-item-from-a-set). Any item from a set
-    - [nanys(S):n](#nanyssn--any-numeric-item-from-a-set). Any numeric item from a set
-    - [copy(A1, -A2)](#copya1--a2-recursively-copy-array-a-to-b). Recursively copy array a to b
+    - [anyi(A) : n](#anyia--n--return-a-random-number-for-1-to-size-of-a). Return a random number for 1 to size of "A"
+    - [any(V) : x](#anyv--x-any-item-from-a-vector-v). Any item from a vector "V"
+    - [anys(S) : x](#anyss--x-any-item-from-a-set-s). Any item from a set "S"
+    - [nanys(S) : n](#nanyss--n--any-numeric-item-from-a-set-s). Any numeric item from a set "S".
+    - [copy(A1, -A2)](#copya1--a2-recursively-copy-array-a1-to-a2). Recursively copy array "A1" to "A2".
 - [Print list](#print-list) 
-    - [o(A):s](#oas--return-a-string-of-keyitem-pairs). Return a string of key,item pairs
-    - [oo(A, s)](#ooa-s-recursively-print-an-array-prefixed-by-s). Recursively print an array, prefixed by "s"
+    - [o(A) : s](#oa--s--return-a-string-of-keyitem-pairs). Return a string of key,item pairs
+    - [oo(A, s)](#ooa-s-recursively-print-an-array-a-prefixed-by-s). Recursively print an array "A", prefixed by "s"
 - [Sort a list](#sort-a-list) 
     - [keysort(A,s)](#keysortas-sort-an-array-a-using-the-field-s). Sort an array "a", using the field "s".
 
 
 ## Update
 
-### push(+a,x):n.  Push a value to end of list
+### push(+a,x) : n.  Push a value to end of list
 Returns the pushed item.
 ```awk
 function push(a,x) { a[ length(a)+1 ] = x; return x; }
@@ -33,18 +33,17 @@ function push(a,x) { a[ length(a)+1 ] = x; return x; }
 
 ## Random items from list
 
-### anyi(A):n.  random index 
-Get a random number 1 to size of `A`.
+### anyi(A) : n.  Return a random number for 1 to size of "A"
 ```awk
 function anyi(a)  { return 1+int(rand()*length(a))  }
 ```
 
-### any(V):x. Any item from a vector
+### any(V) : x. Any item from a vector "V"
 ```awk
 function any(v)   { return v[ anyi(v) ] }
 ```
 
-### anys(S):x. Any item from a set
+### anys(S) : x. Any item from a set "S"
 Note: takes time linear on length of set.
 ```awk
 function anys(s, n,k){
@@ -54,12 +53,12 @@ function anys(s, n,k){
 }
 ```
 
-### nanys(S):n.  Any numeric item from a set
+### nanys(S) : n.  Any numeric item from a set "S".
 ```awk
 function nanys(s) { return 0+anys(s) }
 ```
 
-### copy(A1, -A2). Recursively copy array a to b
+### copy(A1, -A2). Recursively copy array "A1" to "A2".
 ```awk
 function copy(a, b,     i){
   for (i in a) {
@@ -72,7 +71,7 @@ function copy(a, b,     i){
 }}
 ```      
 ## Print list
-### o(A):s.  Return a string of key,item pairs 
+### o(A) : s.  Return a string of key,item pairs 
 Convert a flat array to a string. Not suitable for nested arrays.
 
 ```awk
@@ -83,7 +82,7 @@ function o(a,     sep,    sep1,i,s) {
   return s 
 }
 ```      
-### oo(A, s). Recursively print an array, prefixed by "s"
+### oo(A, s). Recursively print an array "A", prefixed by "s"
 Print a nested array, optionally with some `prefix`.
 Print keys in sorted order.
 
