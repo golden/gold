@@ -5,7 +5,12 @@
 [issues](http://github.com/golden/gold/isses) 
 </p>
 
-BEGIN {
-   GOLD.dot    = sprintf("%c",46)
-   GOLD.up     = GOLD.dot GOLD.dot
-}
+# Maths
+
+## Misc
+
+### abs :  absolute value 
+Usage: `abs(n) : n`
+```
+function abs(x)  { return x>=0 ? x : -1*x }`
+```

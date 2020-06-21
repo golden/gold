@@ -1,3 +1,10 @@
+<a name=top>
+<h1 align=center>GOLD: the Gawk Object Layer</h1>
+<p  align=center>
+[home](http://github.com/golden/gold/master/blob/README.md) :: 
+[issues](http://github.com/golden/gold/isses) 
+</p>
+
 ## Install
 
 1. Install Gawk 
@@ -32,4 +39,3 @@ For those that use Git or travis CI or vim or tmux, there is a little more suppo
    - edit a file using vim, tuned to GOLD files
 - `en -t`: run tmux
    - run `tmux`
-

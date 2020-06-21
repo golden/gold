@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
 
-#!/usr/bin/env gawk -f
-
+cat $1 |
+gawk '
 function ns(n,    s) {
    while(n-- > 0) s= s "    "
    return s
@@ -25,4 +26,4 @@ function trim(s) {
           print ns(new) "- [" s    "](#" tolower(link) ") " 
      else print ns(new) "- [" a[1] "](#" tolower(link) ") : " a[2] 
 }
-END {print ""}
+END {print ""}'

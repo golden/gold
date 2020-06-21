@@ -1,5 +1,4 @@
-## APE ###
-.var/
+## GOLD ###
 *.awk
 
 ## VIM ###
@@ -52,4 +51,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
