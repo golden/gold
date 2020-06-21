@@ -14,7 +14,7 @@ function trim(s) {
 /^#[#]+[ \t]/ { 
      new = split($1,a,"#") - 3
      s = $0
-     gsub(/^[#]+[ \t]*/,"",s) #asada() : asdadsa
+     gsub(/^[#]+[ \t]*/,"",s) 
      s = trim(s)
      link = s
      gsub(/[^a-zA-Z0-9\- ]/,"",link)

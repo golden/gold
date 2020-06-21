@@ -15,7 +15,7 @@
 
 ## Update
 
-### push : push a value to end of list
+### push(a,x) : push a value to end of list
 Usage: `push(+a,x) : n`  
 Returns the pushed item.
 ```awk
@@ -24,20 +24,20 @@ function push(a,x) { a[ length(a)+1 ] = x; return x; }
 
 ## Random items from list
 
-### anyi : random index 
+### anyi(a) : random index 
 Usage: `anyi(a) : n`   
 Get a random number 1 to size of `a`.
 ```awk
 function anyi(a)  { return 1+int(rand()*length(a))  }
 ```
 
-### any :  any item from a vector
+### any(v) :  any item from a vector
 Usage: `any(v) : x`
 ```awk
 function any(v)   { return v[ anyi(v) ] }
 ```
 
-### anys :  any item from a set
+### anys(s) :  any item from a set
 Usage: `anys(s) : x`   
 Note: takes time linear on length of set.
 ```awk
@@ -48,13 +48,14 @@ function anys(s, n,k){
 }
 ```
 
-### nanys: any numberic item fro a set
-Usage: `nanys(s) : n`
+### nanys(s): any numeric item fro a set
+Usage: `nanys(s) : n`   
 ```awk
 function nanys(s) { return 0+anys(s) }
 ```
-### copy() : deep copy
 
+### copy(a, b) : recursively copy array a to b
+Usage: `copy(a, -a)`   
 ```awk
 function copy(a, b,     i){
   for (i in a) {
@@ -66,9 +67,10 @@ function copy(a, b,     i){
       b[i] = a[i] 
 }}
 ```      
-### o()
-
-Convert a flat array to a string.
+## Print list
+### o(a) : return a string of key,item pairs 
+Usage: `o(a)`  
+Convert a flat array to a string. Not suitable for nested arrays.
 
 ```awk
 function o(a,     sep,    sep1,i,s) {
@@ -78,8 +80,8 @@ function o(a,     sep,    sep1,i,s) {
   return s 
 }
 ```      
-### oo()
-
+### oo(a, s) : recursively print an array, prefixed by "s"
+Usage: `oo(a, s)`   
 Print a nested array, optionally with some `prefix`.
 Print keys in sorted order.
 
@@ -102,10 +104,10 @@ function ooSortOrder(a, i) {
 }
 ```
 
-### keysort()
-
-Some nested array `a` by some field `k`.
-
+## Sort a list
+### keysort(a,s) : sort an array "a", using the field "s". 
+Usage: `keysort(+a, s): n`    
+Returns the length of the list.
 ```awk
 function keysort(a,k) {
   GOLD.keysort = k
@@ -123,5 +125,3 @@ function compare(x,y) {
   return 1
 }
 ```
-
-
