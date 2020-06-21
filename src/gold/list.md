@@ -2,16 +2,18 @@
 # List
 
 - [Update](#update) : 
-    - [push](#push--push-a-value-to-end-of-list) : push a value to end of list
+    - [push(a,x)](#pushax--push-a-value-to-end-of-list) : push a value to end of list
 - [Random items from list](#random-items-from-list) : 
-    - [anyi](#anyi--random-index) : random index
-    - [any](#any---any-item-from-a-vector) : any item from a vector
-    - [anys](#anys---any-item-from-a-set) : any item from a set
-    - [nanys](#nanys-any-numberic-item-fro-a-set) : any numberic item fro a set
-    - [copy()](#copy--deep-copy) : deep copy
-    - [o()](#o) : 
-    - [oo()](#oo) : 
-    - [keysort()](#keysort) : 
+    - [anyi(a)](#anyia--random-index) : random index
+    - [any(v)](#anyv---any-item-from-a-vector) : any item from a vector
+    - [anys(s)](#anyss---any-item-from-a-set) : any item from a set
+    - [nanys(s)](#nanyss-any-numeric-item-fro-a-set) : any numeric item fro a set
+    - [copy(a, b)](#copya-b--recursively-copy-array-a-to-b) : recursively copy array a to b
+- [Print list](#print-list) : 
+    - [o(a)](#oa--return-a-string-of-keyitem-pairs) : return a string of key,item pairs
+    - [oo(a, s)](#ooa-s--recursively-print-an-array-prefixed-by-s) : recursively print an array, prefixed by "s"
+- [Sort a list](#sort-a-list) : 
+    - [keysort(a,s)](#keysortas--sort-an-array-a-using-the-field-s) : sort an array "a", using the field "s".
 
 ## Update
 
