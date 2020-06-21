@@ -1,10 +1,3 @@
-<a name=top>
-<h1 align=center>GOLD: the Gawk Object Layer</h1>
-<p  align=center>
-<a href="http://github.com/golden/one/master/blob/README.md#top">home</a> :: 
-<a href="http://github.com/golden/issues">issues</a> 
-</p>
-
 # Unit Tests
 
 To test a file `x.md`, create a file in
@@ -15,15 +8,29 @@ the same directory called `xok.md` that
 - ... where each function has a reserved argument `f` ...
 - ... and the `ok` tests in each function take two arguments:
   - that `f` variable
-  - and a second argument that evaluates to true if
+  - and a second argument that evaluates to true if test is passed.
+
+        ```awk
+        @include "xok"
+        
+        BEGIN { tests("x", "_test1, test2") }
+
+        function _test1(f,    x) {
+           x = 1 + 1
+           ok(f,  x == 2)
+        }
+
+        function _test2(f,    x) {
+           x = 1 - 1 
+           ok(f,  ! x )
+        }
+        ```
 
 ## Top-level Test Driver
-### tests(s,s)
-
+### tests(s1, s2). For file "s1", run the tests listed in "s2".
 Top level unit-test driver.  Resets the random number generator
 before each test.  Prints the group and name of the test.
 Warns about stray globals at the end.
-
 ```awk
 function tests(what, all,   f,a,i,n) {
   n = split(all,a,",")
@@ -36,9 +43,8 @@ function tests(what, all,   f,a,i,n) {
   rogues()
 }
 ```
-### :w
-ok()
 
+### ok(s1, b).  Checls test result "b" in file "s1",
 Report the `yes` or `no` message if a test passes or fails.
 Increments the global `test.yes` and `test.no` counters.
 
@@ -52,7 +58,7 @@ function ok(f,yes,    msg) {
   print "#test:\t" msg "\t" f
 }
 ```
-### near()
+### near(n1,n2, ?n3=10^-32) : b. Returns true in "n1" is within "n3" of "n2" 
 
 Return true if what you `got` is within `epsilon` of
 what you `want` (`epsilon` defaults to 0.001).
