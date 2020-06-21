@@ -7,22 +7,42 @@
 
 # Objects
 
-GAWK functions process  a limited number of types
+## isa(f,a). Return true if "a" is an object of type "f", or any super-type of "f".
+GOLD objects have certain properties:
 
-- `a` : any string
-- `$a` : a numeric
-- `?a` : a boolean, which can be 0/1 or empty/non-empty string.
-- `[x]` : a list
-- `-[x] : an list that will be fully reset within a function
-- `+[x] : an list that will be augmented within this function
+- They are a list with keys:
+  - `ois` (object "is") : a class signifier
+  - `oid` (object "id") : a unique id number for this object.
+- The  class signifier is a  known function.
+- The keys of this array correspond to the keys and value types 
+  of any other "f" thing, (or any of its super types).
 
-GOLD adds user objects; i.e. lists with slots for:
+```awk
+function isa(f,a) {
+  if ( ! isarray(a)         ) return 0
+  if ( ! ("ois" in a)       ) return 0 
+  if ( ! ("oid" in a)       ) return 0 
+  if ( f != a.ois           ) return 0
+  if ( ! (a.ois in FUNCTAB) ) return 0
+  if ( ! (f     in FUNCTAB) ) return 0
+  while(f) { 
+    if (isa1(f, a)) return 1
+    f = GOLD.ois[f]
+  }
+  return 0
+}
 
-- `ois` (object "is") : a class signifier
-- `oid` (object "id") : a unique id number for this object.
+function isa1(f,a,   b) { @f(b); return isa2(a,b) }
 
-The simplest such user object is `Object`:
-
+function isa2(a,b,     j) {
+  if (isarray(a) && isarray(b)) {
+    for(j in a) 
+      if ( ! isa2(a[j], b[j]) ) return 0
+  } else
+      if ( typeof(a) != typeof(b) ) return 0;
+  return 1
+}
+```
 ```awk
 function List(i)    { split("",i,"") }
 function Object(i)  { List(i); i.ois= "Object";  i.oid = ++GOLD.oid }

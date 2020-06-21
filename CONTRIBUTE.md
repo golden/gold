@@ -22,8 +22,9 @@ Atoms:
 
 |Symbol| Meaning                                 |
 |------|:----------------------------------------|
-| x    | any atom : a string or number  or x     |
+| x    | any atom : a string or number or x or f |
 | s    | string                                  |
+| f    | something to be called as an indirect function |
 | n    | number                                  |
 | b    | a 0,1 variables (which might an empty or non-nil string. |
 
