@@ -5,7 +5,6 @@
 <a href="http://github.com/golden/issues">issues</a> 
 </p>
 
-
 # List
 
 - [Update](#update) 
@@ -21,7 +20,6 @@
     - [oo(A, s)](#ooa-s-recursively-print-an-array-a-prefixed-by-s). Recursively print an array "A", prefixed by "s"
 - [Sort a list](#sort-a-list) 
     - [keysort(A,s)](#keysortas-sort-an-array-a-using-the-field-s). Sort an array "a", using the field "s".
-
 
 ## Update
 

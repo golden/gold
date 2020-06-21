@@ -1,8 +1,8 @@
 <a name=top>
 <h1 align=center>GOLD: the Gawk Object Layer</h1>
 <p  align=center>
-[home](http://github.com/golden/gold/master/blob/README.md) :: 
-[issues](http://github.com/golden/gold/isses) 
+<a href="http://github.com/golden/one/master/blob/README.md#top">home</a> :: 
+<a href="http://github.com/golden/issues">issues</a> 
 </p>
 
 # Objects
