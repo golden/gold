@@ -82,7 +82,7 @@ function o(a,     sep,    sep1,i,s) {
   return s 
 }
 ```      
-### oo(A, s) : recursively print an array, prefixed by "s"
+### oo(A, s). Recursively print an array, prefixed by "s"
 Print a nested array, optionally with some `prefix`.
 Print keys in sorted order.
 
@@ -106,8 +106,7 @@ function ooSortOrder(a, i) {
 ```
 
 ## Sort a list
-### keysort(A,s) : sort an array "a", using the field "s". 
-Usage: `keysort(+a, s): n`    
+### keysort(A,s). Sort an array "a", using the field "s". 
 Returns the length of the list.
 ```awk
 function keysort(a,k) {
