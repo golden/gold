@@ -98,6 +98,7 @@ function oo(a,prefix,    indent,   i,txt) {
     } else
       print(txt i (a[i]==""?"": ": " a[i])) }
 }
+
 function ooSortOrder(a, i) {
   for (i in a)
    return PROCINFO["sorted_in"] =\
