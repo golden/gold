@@ -27,7 +27,7 @@ Lists:
 |------|-----------------------------------------|
 | a    | any list: vectors, indexes, other       |
 | v    | vector: a list with all numeric indexes |
-| i    | a list of all indexes, no values        |
+| l    | a list of all indexes, no values        |
 
 Meta:
 

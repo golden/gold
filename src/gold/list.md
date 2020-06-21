@@ -31,32 +31,32 @@ function push(a,x) { a[ length(a)+1 ] = x; return x; }
 
 ## Random items from list
 
-### anyi(A) : n.  Return a random number for 1 to size of "A"
+### anyi(v) : n.  Return a random number for 1 to size of "v"
 ```awk
-function anyi(a)  { return 1+int(rand()*length(a))  }
+function anyi(v)  { return 1+int(rand()*length(v))  }
 ```
 
-### any(V) : x. Any item from a vector "V"
+### any(v) : x. Any item from a vector "v"
 ```awk
 function any(v)   { return v[ anyi(v) ] }
 ```
 
-### anys(S) : x. Any item from a set "S"
+### anys(l) : x. Any item from a list of indexes "l"
 Note: takes time linear on length of set.
 ```awk
-function anys(s, n,k){
-  n = 1/length(s) 
-  for(x in s) if (rand() < n) return x
+function anys(l, n,k){
+  n = 1/length(l) 
+  for(x in l) if (rand() < n) return x
   return x ## make sure something gets returned
 }
 ```
 
-### nanys(S) : n.  Any numeric item from a set "S".
+### nanys(l) : n.  Any numeric item from a list of indexes "l".
 ```awk
 function nanys(s) { return 0+anys(s) }
 ```
 
-### copy(A1, -A2). Recursively copy array "A1" to "A2".
+### copy(a1, -a2). Recursively copy array "a1" to "a2".
 ```awk
 function copy(a, b,     i){
   for (i in a) {
@@ -69,7 +69,7 @@ function copy(a, b,     i){
 }}
 ```      
 ## Print list
-### o(A) : s.  Return a string of key,item pairs 
+### o(a) : s.  Return a string of key,item pairs 
 Convert a flat array to a string. Not suitable for nested arrays.
 
 ```awk
@@ -80,7 +80,7 @@ function o(a,     sep,    sep1,i,s) {
   return s 
 }
 ```      
-### oo(A, s). Recursively print an array "A", prefixed by "s"
+### oo(a, s). Recursively print an array "A", prefixed by "s"
 Print a nested array, optionally with some `prefix`.
 Print keys in sorted order.
 
@@ -105,7 +105,7 @@ function ooSortOrder(a, i) {
 ```
 
 ## Sort a list
-### keysort(A,s). Sort an array "a", using the field "s". 
+### keysort(a,s). Sort an array "a", using the field "s". 
 Returns the length of the list.
 ```awk
 function keysort(a,k) {
