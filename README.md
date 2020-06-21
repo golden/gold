@@ -56,8 +56,10 @@ e.g.  `i.oid=++GOLD.oid`` becomes `i["oid"]=++GOLD["oid"]`.
 <li>Change the  file's mode with <tt>chmod +x</tt>.
 <li> Runs the resulting .awk</ul>
 </tr>
-<tr><td><tt>o</tt>  </td><td> Overlay</td><td><ul> Lists the header file in root README.md. Useful for add a <tt>*.md</tt> file to  add a standard header
-<p> Note that the optional flag `o -r`
+<tr><td><tt>o</tt>  </td><td> Overlay</td><td><ul>
+ Lists the header file in root README.md. Useful for adding a standard
+hearder to  <tt>*.md</tt> files.
+<p> Note that if called withe the optional flag <tt>o -r</tt> flag,
 `o` recursively on all `./src/*.md` files (to give everyone the same look and feel).
 </td></tr>
 <tr><td> <tt>l</tt> </td><td> Lists</td><td>List the markdown headers in this file. Useful while editing <tt>*.md</tt> file to  add a table of contents. </td></tr>
