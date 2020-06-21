@@ -18,9 +18,10 @@
     - [copy(A1, -A2)](#copya1--a2-recursively-copy-array-a-to-b). Recursively copy array a to b
 - [Print list](#print-list) 
     - [o(A):s](#oas--return-a-string-of-keyitem-pairs). Return a string of key,item pairs
-    - [oo(A, s) : recursively print an array, prefixed by "s"](#ooa-s--recursively-print-an-array-prefixed-by-s) 
+    - [oo(A, s)](#ooa-s-recursively-print-an-array-prefixed-by-s). Recursively print an array, prefixed by "s"
 - [Sort a list](#sort-a-list) 
-    - [keysort(A,s) : sort an array "a", using the field "s".](#keysortas--sort-an-array-a-using-the-field-s) 
+    - [keysort(A,s)](#keysortas-sort-an-array-a-using-the-field-s). Sort an array "a", using the field "s".
+
 
 ## Update
 
