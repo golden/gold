@@ -10,6 +10,6 @@
 ## Misc
 
 ### abs(n):n.  Returns absolute value 
-```
-function abs(x)  { return x>=0 ? x : -1*x }`
+```awk
+function abs(x)  { return x>=0 ? x : -1*x }
 ```

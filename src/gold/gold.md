@@ -8,9 +8,9 @@
 # Gold (base system)
 
 ```awk
-@include "math"
-@include "const"
-@include "list"
-@include "unittest"
-@include "obj"
+@include "gold/math"
+@include "gold/const"
+@include "gold/list"
+@include "gold/unittest"
+@include "gold/obj"
 ```

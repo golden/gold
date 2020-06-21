@@ -87,7 +87,7 @@ Return the key where we added the new thing.
 function has(i,k,f,   s) { 
   if (!f) f = "List"               # ensure we are creating something
   if (!k) k = length(i)+1          # ensure we have a place to put it
-  i[k]["\001"]; delete i[k]["\001] # ensure we adding to a sulist
+  i[k]["\001"]; delete i[k]["\001"] # ensure we adding to a sulist
   @f(i[k])                         # create
   return k                         # return where we put it
 }
