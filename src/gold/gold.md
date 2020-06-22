@@ -11,6 +11,6 @@
 @include "gold/math"
 @include "gold/const"
 @include "gold/list"
-@include "gold/unittest"
+@include "gold/test"
 @include "gold/obj"
 ```

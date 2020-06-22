@@ -9,8 +9,6 @@ awk=$path/${stem}.awk
 (
 echo  "#!/usr/bin/env gawk -f"  
 echo ""
-echo "BEGIN {Stem=\"" $stem "\"}" 
-echo ""
 
 if [ -f "$Gold/LICENSE.md" ]
 then
@@ -21,6 +19,8 @@ then
                 print $0} ' |
   sed 's/^/# /'
 fi
+echo ""
+echo "BEGIN {MAIN=\"" $stem "\"}" 
 
 cat $1 |
 gawk \
@@ -45,8 +45,6 @@ function find(f,   a,s) {
 function show(g,s, use) {
   if (s ~ /^```awk/) return 1
   if (s ~ /^```/)    return 0
-  if (s ~ /^[ \t]*$/) return use
-  if (s ~ /^(function|BEGIN|END)/) print ""
   if (use) 
      print gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,
                   "[\"\\1\\2\"]","g",s);
@@ -72,3 +70,8 @@ function inc(f, seen,
 }
 
 ') > $awk
+
+if [ -t 0 ]; then gawk  -f $awk
+else      cat - | gawk  -f $awk
+fi
+

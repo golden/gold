@@ -22,24 +22,23 @@
 GOLD objects have certain properties:
 
 - They are a list with keys:
-  - `ois` (object "is") : a class signifier
+  - `ois` (object "is") : a class tag
   - `oid` (object "id") : a unique id number for this object.
-- The  class signifier is a  known function.
+- The  class tag is a  known function.
 - The keys of this array correspond to the keys and value types 
   of any other "f" thing, (or any of its super types).
 
 ```awk
 function isa(f,a) {
-  if ( ! isarray(a)         ) return 0
-  if ( ! ("ois" in a)       ) return 0 
-  if ( ! ("oid" in a)       ) return 0 
-  if ( f != a.ois           ) return 0
-  if ( ! (a.ois in FUNCTAB) ) return 0
-  if ( ! (f     in FUNCTAB) ) return 0
-  while(f) { 
-    if (isa1(f, a)) return 1
-    f = GOLD.ois[f]
-  }
+  if (isarray(a) && "ois" in a && "oid" in a && 
+      f==a.ois && a.ois in FUNCTAB) {
+       if (GOLD.brave)
+         return 1
+       else {
+         while(f) { 
+           if (isa1(f, a)) 
+             return 1
+           f = GOLD.ois[f] }}}
   return 0
 }
 
@@ -47,33 +46,36 @@ function isa1(f,a,   b) { @f(b); return isa2(a,b) }
 
 function isa2(a,b,     j) {
   if (isarray(a) && isarray(b)) {
-    for(j in a) 
-      if ( ! isa2(a[j], b[j]) ) return 0
-  } else
-      if ( typeof(a) != typeof(b) ) return 0;
+    for(j in b) 
+      if ( ! isa2(a[j], b[j]) ) 
+        return 0
+  } else {
+      if (typeof(a) != typeof(b)) 
+        return 0 
+  }
   return 1
 }
 ```
 ## Creation
-### Object(?a) : create a newlist
+### Obj(?a) : create a newlist
 ```awk
-function Object(i)  { 
-  List(i); i.ois= "Object";  i.oid = ++GOLD.oid 
+function Obj(i)  { 
+  List(i); i.ois= "Obj";  i.oid = ++GOLD.oid 
 }
 
 function List(i)    { split("",i,"") }
 ```
 
-Note the "dot notation" (e.g. i.oid) in the `Object` function. These
+Note the "dot notation" (e.g. i.oid) in the `Obj` function. These
 are converted into field names of GAWK arrays. Most specifically, the GOLD transpiler
 converts all  .md files to .awk files as follows:
 
         /\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/ ==> "[\"\\1\\2\"]"
 
-For example, after transpiling, the above`Object` function becomes::
+For example, after transpiling, the above`Obj` function becomes::
 
-        function Object(i)  { 
-          List(i); i["ois"]= "Object";  i["oid"]= ++GOLD["oid"] 
+        function Obj(i)  { 
+          List(i); i["ois"]= "Obj";  i["oid"]= ++GOLD["oid"] 
         }
 
 GOLD strives to minimize its intrusion to the global space. Hence, all its bookkeeping
@@ -94,12 +96,13 @@ function has(i,k,f,   s) {
 ```
 
 ## Inheritance
-### is(+a,f). Tag the object "a" with the class signifier "f".
+### is(+a,f1,?f2). Tag the object "a" with the class tag "f1". Optioanlly, make this a subclass of "f2".
 As a side-effect, make a note about what sub-classes are known in this system.
 ```awk
-function is(i,f) {
-  if ("ois" in i) { GOLD.ois[f] = i.ois }
-  i.ois = f
+function is(i,f1,f2) {
+  if (f2) @f2(i)
+  if ("ois" in i) { GOLD.ois[f1] = i.ois }
+  i.ois = f1
 }
 ```
 

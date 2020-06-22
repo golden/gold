@@ -1,5 +1,9 @@
 # Unit Tests
 
+```awk
+@include "gold/math"
+```
+
 To test a file `x.md`, create a file in
 the same directory called `xok.md` that
 

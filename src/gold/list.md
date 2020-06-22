@@ -44,7 +44,7 @@ function any(v)   { return v[ anyi(v) ] }
 ### anys(l) : x. Any item from a list of indexes "l"
 Note: takes time linear on length of set.
 ```awk
-function anys(l, n,k){
+function anys(l, n,x){
   n = 1/length(l) 
   for(x in l) if (rand() < n) return x
   return x ## make sure something gets returned
