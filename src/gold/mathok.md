@@ -1,0 +1,2 @@
+```awk
+@include "gold/gold"
